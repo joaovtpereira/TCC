@@ -8,12 +8,12 @@ import numpy as np
 
 # binary encode an input pattern, return a list of binary vectors
 def encode(pattern, n_unique):
-	encoded = list()
-	for value in pattern:
-		row = [0.0 for x in range(n_unique)]
-		row[value] = 1.0
-		encoded.append(row)
-	return encoded
+    encoded = list()
+    for value in pattern:
+        row = [0.0 for x in range(n_unique)]
+        row[value] = 1.0
+        encoded.append(row)
+    return encoded
 
 # create input/output pairs of encoded vectors, returns X, y
 def to_xy_pairs(encoded):
@@ -45,6 +45,7 @@ data = json.load(f)
 # guardando atributo de dados na variavel base_de_dados
 base_de_dados = data['Data'][:]
 
+
 i = 0
 
 while i < len(base_de_dados):
@@ -54,8 +55,10 @@ while i < len(base_de_dados):
   
   for key, value in base_de_dados[i].items():
     # pegando somente valor da key
-    tempList.append(value)
-   
+    # removendo colunas que não sao float
+    if isinstance(value, float):
+        tempList.append(value)
+
   # setando a lista no lugar do dicionario
   base_de_dados[i] = tempList
   i = i + 1

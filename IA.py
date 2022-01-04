@@ -9,12 +9,14 @@ import numpy as np
 
 # binary encode an input pattern, return a list of binary vectors
 def encode(pattern, n_unique):
-	encoded = list()
-	for value in pattern:
-		row = [0.0 for x in range(n_unique)]
-		row[value] = 1.0
-		encoded.append(row)
-	return encoded
+    encoded = list()
+    for value in pattern:
+        print(value)    
+        row = [0.0 for x in range(n_unique)]
+        row[value] = 1.0
+        print(row)
+        encoded.append(row)
+    return encoded
 
 # create input/output pairs of encoded vectors, returns X, y
 def to_xy_pairs(encoded):
@@ -44,10 +46,10 @@ seq3 = [6, 2, 3, 4, 6]
 seq4 = [7, 3, 4, 5, 7]
 seq5 = [8, 4, 5, 6, 8]
 seq6 = [5, 1, 2, 3, 5]
-seq8 = [10, 6, 7, 8, 10]
-seq9 = [11, 7, 8, 9, 11]
+seq8 = [15, 6, 7, 8, 10]
+seq9 = [16, 7, 8, 9, 11]
 seq10 = [12, 8, 9, 10, 12]
-seq11 = [13, 9, 10, 11, 13]
+seq11 = [13, 9, 12, 11, 14]
 seq7 = [9, 5, 6, 7, 9]
 # convert sequences into required data format
 n_unique = len(set(seq1 + seq2 + seq3 + seq4 + seq5 + seq6 + seq8+ seq9 + seq10 +seq11+ seq7))
