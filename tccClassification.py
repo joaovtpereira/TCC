@@ -1,40 +1,10 @@
-from pandas import DataFrame
-import pandas as pd
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 import json
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
+import matplotlib.pyplot as plt
 import numpy as np
 
-# binary encode an input pattern, return a list of binary vectors
-def encode(pattern, n_unique):
-    encoded = list()
-    for value in pattern:
-        row = [0.0 for x in range(n_unique)]
-        row[value] = 1.0
-        encoded.append(row)
-    return encoded
-
-# create input/output pairs of encoded vectors, returns X, y
-def to_xy_pairs(encoded):
-	X,y = list(),list()
-	for i in range(1, len(encoded)):
-		X.append(encoded[i-1])
-		y.append(encoded[i])
-	return X, y
-
-# convert sequence to x/y pairs ready for use with an LSTM
-def to_lstm_dataset(sequence, n_unique):
-	# one hot encode
-	encoded = encode(sequence, n_unique)
-	# convert to in/out patterns
-	X,y = to_xy_pairs(encoded)
-	# convert to LSTM friendly format
-	dfX, dfy = DataFrame(X), DataFrame(y)
-	lstmX = dfX.values
-	lstmX = lstmX.reshape(lstmX.shape[0], 1, lstmX.shape[1])
-	lstmY = dfy.values
-	return lstmX, lstmY
 
 # abrindo arquivo contendo os dados da moeda
 f = open('data.json')
@@ -69,15 +39,18 @@ i = 0
 w, h = 5,int(len(base_de_dados)/24)
 vetorCaracteristica = [[0 for x in range(w)] for y in range(h)] 
 y = 0
+targets = [0 for y in range(h)] 
 
-
-while i < len(base_de_dados) - 24:
+while i < len(base_de_dados)  - 24:
     j = 0
+    value_initial = 0
+
     while j < 24:
         if(j == 0):
             vetorCaracteristica[y][0]=base_de_dados[i+j][3]
             vetorCaracteristica[y][3]=base_de_dados[i+j][2]
             vetorCaracteristica[y][4]=base_de_dados[i+j][1]
+            value_initial = base_de_dados[i+j][0]
             
         if(j > 0):
             if(vetorCaracteristica[y][3] > base_de_dados[i+j][2]):
@@ -89,8 +62,44 @@ while i < len(base_de_dados) - 24:
         if(j == 23):
            vetorCaracteristica[y][1]=base_de_dados[i+j][0]
            vetorCaracteristica[y][2]=base_de_dados[i+j][6]
+           if(value_initial < base_de_dados[i+j][0]):
+              targets[y] = 0
+           else :
+              targets[y] = 1
            
         j = j+1
     
     y = y+1
     i = i+j
+
+
+# rede
+
+X_train, X_test, y_train, y_test = train_test_split(np.array(vetorCaracteristica), np.array(targets), test_size=0.33)
+N, D = X_train.shape
+
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Input(shape=(D,)),
+    tf.keras.layers.Dense(1, activation='sigmoid')
+])
+
+model.compile(optimizer='adam',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+
+r = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=100)
+
+print("Train score: ", model.evaluate(X_train, y_train))
+print("Test score: ", model.evaluate(X_test, y_test))
+
+plt.plot(r.history['loss'], label='loss')
+plt.plot(r.history['val_loss'], label='val_loss')
+plt.legend()
+
+plt.plot(r.history['accuracy'], label='acc')
+plt.plot(r.history['val_accuracy'], label='val_acc')
+plt.legend()
