@@ -15,6 +15,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, LSTM, BatchNormalization
 from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
 
+import matplotlib.pyplot as plt
 
 EPOCHS = 10
 BATCH_SIZE = 64
@@ -185,5 +186,11 @@ checkpoint = ModelCheckpoint("models/{}.model".format(filepath, monitor="val_acc
 
 history = model.fit(np.asarray(train_x), np.asarray(train_y), batch_size=BATCH_SIZE, epochs=EPOCHS, validation_data=(np.asarray(validation_x), np.asarray(validation_y)), callbacks=[tensorboard, checkpoint])
 
+plt.plot(history.history['loss'], label='loss')
+plt.plot(history.history['val_loss'], label='val_loss')
+plt.legend()
 
+plt.plot(history.history['accuracy'], label='acc')
+plt.plot(history.history['val_accuracy'], label='val_acc')
+plt.legend()
 
