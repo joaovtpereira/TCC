@@ -1,0 +1,56 @@
+0.05
+train data: 1728 validation: 48
+Dont buys: 864 Buys: 864
+Validation Dont buys: 24 validation buys: 24
+C:\Users\jjdet\anaconda3\envs\tcc\lib\site-packages\keras\optimizers\optimizer_v2\adam.py:110: UserWarning: The `lr` argument is deprecated, use `learning_rate` instead.
+  super(Adam, self).__init__(name, **kwargs)
+Epoch 1/10
+27/27 [==============================] - ETA: 0s - loss: 0.7150 - accuracy: 0.6435  WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-01-0.521.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-01-0.521.model\assets
+27/27 [==============================] - 21s 637ms/step - loss: 0.7150 - accuracy: 0.6435 - val_loss: 0.6932 - val_accuracy: 0.5208
+Epoch 2/10
+27/27 [==============================] - ETA: 0s - loss: 0.5882 - accuracy: 0.6892WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-02-0.500.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-02-0.500.model\assets
+27/27 [==============================] - 20s 756ms/step - loss: 0.5882 - accuracy: 0.6892 - val_loss: 0.7001 - val_accuracy: 0.5000
+Epoch 3/10
+27/27 [==============================] - ETA: 0s - loss: 0.5290 - accuracy: 0.7361WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-03-0.500.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-03-0.500.model\assets
+27/27 [==============================] - 21s 793ms/step - loss: 0.5290 - accuracy: 0.7361 - val_loss: 0.6946 - val_accuracy: 0.5000
+Epoch 4/10
+27/27 [==============================] - ETA: 0s - loss: 0.4688 - accuracy: 0.7801 WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-04-0.500.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-04-0.500.model\assets
+27/27 [==============================] - 23s 855ms/step - loss: 0.4688 - accuracy: 0.7801 - val_loss: 0.6931 - val_accuracy: 0.5000
+Epoch 5/10
+27/27 [==============================] - ETA: 0s - loss: 0.4146 - accuracy: 0.7940 WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-05-0.625.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-05-0.625.model\assets
+27/27 [==============================] - 24s 892ms/step - loss: 0.4146 - accuracy: 0.7940 - val_loss: 0.6851 - val_accuracy: 0.6250
+Epoch 6/10
+27/27 [==============================] - ETA: 0s - loss: 0.3295 - accuracy: 0.8484 WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-06-0.479.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-06-0.479.model\assets
+27/27 [==============================] - 23s 864ms/step - loss: 0.3295 - accuracy: 0.8484 - val_loss: 0.7474 - val_accuracy: 0.4792
+Epoch 7/10
+27/27 [==============================] - ETA: 0s - loss: 0.2778 - accuracy: 0.8808 WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-07-0.354.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-07-0.354.model\assets
+27/27 [==============================] - 23s 873ms/step - loss: 0.2778 - accuracy: 0.8808 - val_loss: 0.8106 - val_accuracy: 0.3542
+Epoch 8/10
+27/27 [==============================] - ETA: 0s - loss: 0.2312 - accuracy: 0.9057 WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-08-0.312.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-08-0.312.model\assets
+27/27 [==============================] - 24s 921ms/step - loss: 0.2312 - accuracy: 0.9057 - val_loss: 0.9125 - val_accuracy: 0.3125
+Epoch 9/10
+27/27 [==============================] - ETA: 0s - loss: 0.1971 - accuracy: 0.9155 WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-09-0.521.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-09-0.521.model\assets
+27/27 [==============================] - 23s 875ms/step - loss: 0.1971 - accuracy: 0.9155 - val_loss: 1.2006 - val_accuracy: 0.5208
+Epoch 10/10
+27/27 [==============================] - ETA: 0s - loss: 0.1847 - accuracy: 0.9242 WARNING:absl:Found untraced functions such as lstm_cell_19_layer_call_fn, lstm_cell_19_layer_call_and_return_conditional_losses, lstm_cell_20_layer_call_fn, lstm_cell_20_layer_call_and_return_conditional_losses, lstm_cell_21_layer_call_fn while saving (showing 5 of 6). These functions will not be directly callable after loading.
+INFO:tensorflow:Assets written to: models\RNN_Final-10-0.625.model\assets
+INFO:tensorflow:Assets written to: models\RNN_Final-10-0.625.model\assets
+27/27 [==============================] - 25s 935ms/step - loss: 0.1847 - accuracy: 0.9242 - val_loss: 1.0143 - val_accuracy: 0.6250

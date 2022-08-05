@@ -1,3 +1,4 @@
+0.30
 train data: 1172 validation: 528
 Dont buys: 586 Buys: 586
 Validation Dont buys: 264 validation buys: 264

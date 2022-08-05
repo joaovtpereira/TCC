@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 EPOCHS = 10
 BATCH_SIZE = 64
 SEQ_LEN= 24
-TEST =  "LSTM-0.30"
+TEST =  "LSTM-0.05"
 NAME = f"{SEQ_LEN}-SEQ-{TEST}-PRED-{int(time.time())}"
 
 # abrindo arquivo contendo os dados da moeda
@@ -142,7 +142,7 @@ main_df.columns = ['close', 'high', 'low', 'open', 'volumefrom']
 main_df['target'] = targets
 
 times = sorted(main_df.index.values)
-last_5pct = times[-int(0.30*len(times))]
+last_5pct = times[-int(0.05*len(times))]
 
 
 validation_main_df = main_df[(main_df.index >= last_5pct)] # aqui ele ta separando um array com todas as amostras com timestamp maior que a last_5pct, ou seja, pegando os 5% restante da base
