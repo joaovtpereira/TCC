@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 EPOCHS = 10
 BATCH_SIZE = 64
-SEQ_LEN= 24
+SEQ_LEN= 3
 TEST =  "LSTM-0.05"
 NAME = f"{SEQ_LEN}-SEQ-{TEST}-PRED-{int(time.time())}"
 
@@ -112,37 +112,37 @@ while i < len(base_de_dados):
 targets = [0 for y in range(1968)] 
 i=0
   
-while i < len(base_de_dados)  - 24:
+while i < len(base_de_dados)  - SEQ_LEN:
     j = 0
     value_initial = 0
     
-    while j < 24:
+    while j < SEQ_LEN:
         if(value_initial == 0):
             # if(j == 0) :
                 # print('valor: ', base_de_dados[i + j][3])
             value_initial = base_de_dados[i + j][3]
         
-        if(j == 23):
+        if(j == SEQ_LEN - 1):
             # if(j == 0) :
                 # print('valor close: ', base_de_dados[i + j][0])
                 # print('valor abertura: ', value_initial)
             if(base_de_dados[i + j][0] >= value_initial):
-                for x in range(i, i+24):
+                for x in range(i, i+SEQ_LEN):
                     targets[x] = 1
             else :
-                for x in range(i, i+24):
+                for x in range(i, i+SEQ_LEN):
                     targets[x] = 0
                 
         j = j+1
         
-    i = i+24
+    i = i+SEQ_LEN
   
 main_df = pd.DataFrame(base_de_dados)
 main_df.columns = ['close', 'high', 'low', 'open', 'volumefrom']
 main_df['target'] = targets
 
 times = sorted(main_df.index.values)
-last_5pct = times[-int(0.05*len(times))]
+last_5pct = times[-int(0.30*len(times))]
 
 
 validation_main_df = main_df[(main_df.index >= last_5pct)] # aqui ele ta separando um array com todas as amostras com timestamp maior que a last_5pct, ou seja, pegando os 5% restante da base

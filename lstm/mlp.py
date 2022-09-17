@@ -12,14 +12,15 @@ from sklearn.model_selection import train_test_split
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, LSTM, BatchNormalization
+from tensorflow.keras.layers import Dense, Dropout, LSTM, BatchNormalization, Input
 from tensorflow.keras.callbacks import TensorBoard, ModelCheckpoint
+
 
 import matplotlib.pyplot as plt
 
 EPOCHS = 10
 BATCH_SIZE = 64
-SEQ_LEN= 24
+SEQ_LEN= 3
 TEST =  "LSTM-0.20"
 NAME = f"{SEQ_LEN}-SEQ-{TEST}-PRED-{int(time.time())}"
 
@@ -142,7 +143,7 @@ main_df.columns = ['close', 'high', 'low', 'open', 'volumefrom']
 main_df['target'] = targets
 
 times = sorted(main_df.index.values)
-last_5pct = times[-int(0.20*len(times))]
+last_5pct = times[-int(0.30*len(times))]
 
 
 validation_main_df = main_df[(main_df.index >= last_5pct)] # aqui ele ta separando um array com todas as amostras com timestamp maior que a last_5pct, ou seja, pegando os 5% restante da base
@@ -156,16 +157,17 @@ print(f"train data: {len(train_x)} validation: {len(validation_x)}")
 print(f"Dont buys: {train_y.count(0)} Buys: {train_y.count(1)}")
 print(f"Validation Dont buys: {validation_y.count(0)} validation buys: {validation_y.count(1)}")
 
+"""
 model = Sequential()
-model.add(LSTM(128, input_shape=(train_x.shape[1:]), return_sequences=True)) # 128 nós
+model.add(Input(shape=(train_x.shape[1:]))) # 128 nós
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
-model.add(LSTM(128, input_shape=(train_x.shape[1:]), return_sequences=True)) # 128 nós
-model.add(Dropout(0.1))
+model.add(Input(shape=(train_x.shape[1:]))) # 128 nós
+model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
-model.add(LSTM(128, input_shape=(train_x.shape[1:]))) # Como n utiliza a classe Dense do keras, n precisa retornar as sequencias
+model.add(Input(shape=(train_x.shape[1:]))) # 128 nós
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
@@ -173,6 +175,15 @@ model.add(Dense(32, activation="relu"))
 model.add(Dropout(0.2))
 
 model.add(Dense(2, activation="softmax"))
+"""
+
+train_y = np.asarray(train_y).astype('float32').reshape((-1,1))
+validation_y = np.asarray(validation_y).astype('float32').reshape((-1,1))
+
+model = Sequential()
+model.add(Dense(1024, activation='relu', input_shape=train_x.shape[1:]))
+model.add(Dense(1))
+
 
 opt = tf.keras.optimizers.Adam(lr=0.001, decay=1e-6)
 
